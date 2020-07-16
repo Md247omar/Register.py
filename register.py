@@ -94,6 +94,16 @@ class Register:
 
         chk = Checkbutton(root, text = 'I Agrre The Terms & Conditions',variable=self.var_chk, onvalue = 1, offvalue = 0, bg = 'lightgray',font=('times new roman', 15))
         chk.place(x=150, y=450, width = 300)
+    
+    def clear(self):
+        self.txt_fname.delete(0,END)
+        self.txt_lname.delete(0,END)
+        self.txt_contact.delete(0,END)
+        self.txt_email.delete(0,END)
+        self.txt_pas.delete(0,END)
+        self.txt_Cpas.delete(0,END)
+        self.txt_answer.delete(0,END)
+        self.combo_quest.current(0)
 
     def register_data(self):
         if self.txt_fname.get() == '' or self.txt_contact.get()=='' or self.txt_email.get() =='' or self.combo_quest.get() =='Select' or self.txt_answer.get()=='' or self.txt_pas.get() =='' or self.txt_Cpas.get()=='':
@@ -138,7 +148,7 @@ class Register:
                     con.commit()
                     con.close()
                     messagebox.showinfo("Success", "Your Regiseration Successfull")
-
+                    self.clear()
 
             except Exception as es:
                 messagebox.showerror("Error",f"Error due to: {str(es)}", parent = self.root)
